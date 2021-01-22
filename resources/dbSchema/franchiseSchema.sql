@@ -7,10 +7,29 @@ create table franchise(
     
     franchise_info_, -- : 가맹정보 관련한 정보들-->여러개 들어감(정보, 도표 등등)
 
-    franchise_brand_introduce varchar(256), -- 브랜드 정보 / 브랜드 소개
-    franchise_brand_menu varchar(256), -- 브랜드 정보 / 브랜드 대표메뉴
-    franchise_brand_competitiveness varchar(256), -- 브랜드 정보 / 브랜드 경쟁력
-    franchise_brand_video varchar(256), -- 브랜드 정보 / 브랜드 홍보영상
+    -- 가맹정보 부분 //////////////////////////////////////////////////
+    franchise_storenum int,     -- 매장 수
+    franchise_cost int,         -- 창업 비용
+    franchise_monthSale int,    -- 월 평균 매출액
+    -- franchise_name --> 이 부분은 위에 등록 해 두었음 : 상호명   
+    franchise_ceo varchar(10),  -- 대표
+    franchise_type varchar(10), -- 사업자 유형
+    franchise_address varchar(256), -- 주소
+    franchise_registnum varchar(20), -- 사업자등록번호
+    franchise_crn varchar(20),  -- 법인등록번호
+    franchise_phone varchar(11), -- 대표 번호
+    franchise_fax varchar(20),  -- 대표 팩스 번호
+    franchise_detailsale varchar(256), -- 브랜드 창업 비용
+                                       -- 도표에 들어가는 자료인데 구분자로 여래개 받아서 넣을 듯
+    -- 그래프용 월평균 매출
+    -- 그래프용 가맹점 증감추이
+    -- 그래프용 가맹점 계약 현황
+    -- ////////////////////////////////////////////////////////////////
+
+    brand_introduce varchar(256), -- 브랜드 정보 / 브랜드 소개
+    brand_menu varchar(256), -- 브랜드 정보 / 브랜드 대표메뉴
+    brand_competitiveness varchar(256), -- 브랜드 정보 / 브랜드 경쟁력
+    brand_video varchar(256), -- 브랜드 정보 / 브랜드 홍보영상
 
     uploadAt datetime default now(), -- 업로드 시간
     views int, -- 조회수
