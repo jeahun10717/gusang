@@ -1,21 +1,12 @@
-const swaggerUi = require('swagger-ui-koa');
-const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerDefinition = {
-    info:{
-        title: 'gusang server api',
-        version: '1.0.0',
-        description: ''
-    },
-    host:'localhost:4000',
-    basepath: '/',
-    securityDefinitions: {
-        bearerAuth:{
-            type: 'apiKey',
-            name: 'Authorization',
-            scheme: 'bearer',
-            in: 'header'
-        },
-    },
-};
+const koaSwagger = require('koa2-swagger-ui');
+const yamljs = require('yamljs');
+const spec = yamljs.load('./src/swagger/openapi.yaml');
 
-
+module.exports = koaSwagger.koaSwagger({
+  title: 'REST API DOCUMENTS',
+  swaggerOptions: {
+    spec
+  },
+  hideTopbar: true,
+  routePrefix: '/api/docs'
+});

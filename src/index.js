@@ -10,10 +10,11 @@ const serve = require('koa-static');
 
 const api = require('./api')
 
-const { oauth, token } = require('./lib');
-
+const { oauth, token, error } = require('./lib');
 
 const { KAKAO_CLIENT_ID, KAKAO_REDIRECT_URI } = process.env;
+
+
 
 router.get('/',ctx=>{
    ctx.body = `
@@ -110,8 +111,10 @@ router.use('/api', api.routes());
 
 app.use(serve('./public'))
 app.use(bodyParser());
+// app.use(error);
 app.use(token.jwtMiddleware);
 app.use(router.routes()).use(router.allowedMethods());
+app.use(require('./swagger'))
 
 app.listen(4000, ()=>{
    console.log("kakao OAuth test server port: 4000");

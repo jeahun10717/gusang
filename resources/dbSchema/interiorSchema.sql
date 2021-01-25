@@ -2,7 +2,7 @@ create table interior(
     id int unsigned auto_increment primary key,
     uuid binary(16) unique,
     contents_name varchar(40), -- : 컨텐츠에 표시될 텍스트
-    contents_type int, -- 0 은 영상/ 1 은 360 vr/ 2 는 주거/ 3 은 상가
+    contents_type varchar(6), -- 영상,360 vr, 주거, 상가
     local_address varchar(10), -- : 지역명에 대한 정보 저장, ex) 연제구, 부산진구 등등
                                -- 프론트에서 데이터 정해줘야 할 듯
     -- auth ,  -- : 이 부분은 newSale 을 따로 뺐으니까 필요없을 듯함 
@@ -29,7 +29,14 @@ create table interior(
     interior_info_etc varchar(256),       -- 6. 기타설명
     --
 
-    uploadAt datetime default now(),
+    -- 카카오 맵을 위한 위도 경도 주소
+    kakaomap_info_latitude double,      -- 위도
+    kakaomap_info_longtitude double,    -- 경도
+    kakaomap_info_address varchar(256), -- 주소
+
+
+    registAt datetime default now(),
+    updateAt datetime,
     views int, -- 조회수
 )
 

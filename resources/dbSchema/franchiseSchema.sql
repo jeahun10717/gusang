@@ -31,6 +31,8 @@ create table franchise(
     brand_competitiveness varchar(256), -- 브랜드 정보 / 브랜드 경쟁력
     brand_video varchar(256), -- 브랜드 정보 / 브랜드 홍보영상
 
-    uploadAt datetime default now(), -- 업로드 시간
+
+    registAt datetime default now(),
+    updateAt datetime,
     views int, -- 조회수
 )

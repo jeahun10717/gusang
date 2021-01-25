@@ -6,7 +6,6 @@ kakao.get('/', async (ctx,next)=>{ // get : /src/api/users/kakao
    const { code } = ctx.query;
 
    const kakaoData = await oauth.kakao(code);
-   
    const userToken = await login.regist({
       login_type: 2,
       login_id: `kakao:${kakaoData.id}`

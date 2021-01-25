@@ -2,8 +2,6 @@ const { user } = require('../../databases');
 const uuid = require("../uuid");
 const token = require('../token');
 
-
-
 exports.regist = async (query)=>{
     const userData = await user.isExist(query.login_type, query.login_id);
     // 가입이 된 유저인지 검증

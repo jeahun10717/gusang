@@ -1,6 +1,4 @@
-const users = require('../../api/users');
 const db = require('../db');
-// const db = require('../db');
 
 exports.insert = async (query)=>{
     return await db.query("INSERT INTO users set ?", query);

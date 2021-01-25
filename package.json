@@ -17,9 +17,11 @@
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.0.0",
     "koa-static": "^5.0.0",
+    "koa2-swagger-ui": "^5.0.5",
     "mysql2": "^2.2.5",
     "swagger-jsdoc": "^6.0.1",
     "swagger-ui-koa": "0.0.1",
-    "uuid4": "^2.0.2"
+    "uuid4": "^2.0.2",
+    "yamljs": "^0.3.0"
   }
 }
