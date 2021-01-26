@@ -9,6 +9,6 @@ newsale
 .get('/show')   // 
 .post('/create', newSaleCtrl.create)
 .post('/update')
-.delete('/delete')
+.delete('/remove/:id', newSaleCtrl.delete)
 
 module.exports = newsale;

@@ -1,4 +1,5 @@
-const Joi = require('joi')
+const Joi = require('joi');
+const { params } = require('.');
 const { newsale } = require('../../databases'); 
 
 exports.pagenate = async (ctx) => {
@@ -10,10 +11,6 @@ exports.detail = async (ctx) => {
 }
 
 exports.search = async (ctx) => {
-
-}
-
-exports.show = async (ctx) => {
 
 }
 
@@ -41,7 +38,7 @@ exports.create = async (ctx) => {
         // 설명 부분
         newsale_info_type : Joi.number().required(),            // 1. 타입
         newsale_info_housenum : Joi.number().required(),        // 2. 총 세대수
-        newsale_info_parknum : Joi.number().required(),         // 3. 주차대수
+        newsale_info_parknum : Joi.number().required(),         // 3. 주차 대수
         newsale_info_width : Joi.number().required(),           // 4. 평형대
         newsale_info_price : Joi.number().required(),           // 5. 가격
         newsale_info_perprice : Joi.number().required(),        // 6. 평당가격
@@ -67,8 +64,30 @@ exports.create = async (ctx) => {
     }
 }
 
-exports.update = async (ctx) => {
+exports.delete = async(ctx) => {
+    const { id } = ctx.params;
 
+    console.log(ctx.params);
+    //isExist 는 값이 DB 에 있으면 1, 없으면 0 출력
+    if(newsale.isExist(id)){
+        await newsale.delete(id)
+        ctx.body = {
+            status : 200
+        }        
+    }else{
+        ctx.throw(400)
+    }
+}
+
+exports.update = async (ctx) => {
+    const { id } = ctx.params;
+
+    //isExist 는 값이 DB 에 있으면 1, 없으면 0 출력
+    if(newsale.isExist(id)){
+        
+    }else{
+        ctx.throw(400)
+    }
 }
 
 exports.show = async (ctx) => {

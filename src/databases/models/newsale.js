@@ -1,7 +1,7 @@
 const db = require('../db');
 
 exports.insert = async(query)=>{
-    return await db.query('insert into newSale set ?', query)
+    return await db.query('insert into newSale set ?', query);
 }
 
 
@@ -14,16 +14,26 @@ exports.update = async(id)=>{
 }
 
 exports.delete = async(id)=>{
-    return await db.query('delete from newSale where id = ?', id)
+    return await db.query('delete from newSale where id = ?', id);
 } 
 
 // 최신순으로 정렬
 exports.pageByNew = async(page, contents) =>{
     return await db.query(`select * from newSale order by id desc limit ? offset ?`
-    ,[contents, page * contents])
+    ,[contents, page * contents]);
 }
 // 조회수순으로 정렬
 exports.pageByView = async(page, contents) =>{
     return await db.query(`select * from newSale order by views desc limit ? offset ?`
-    ,[contents, page * contents])
+    ,[contents, page * contents]);
+}
+
+// exports.isExist = async (login_type, login_id) => {
+//     const [result] = await db.query("select hex(uuid) uuid, isnull(name) isNew from users where login_type = ? and login_id = ?"
+//     ,[login_type, login_id]);
+//     return result; // 있으면 객체, 없으면 undefined
+// }
+
+exports.isExist = async(id)=>{
+    return await db.query('select * from (newSale where id = ?) as success', id);
 }
