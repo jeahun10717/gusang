@@ -2,12 +2,42 @@ const Joi = require('joi');
 const { params } = require('.');
 const { newsale } = require('../../databases'); 
 
+// 아래 함수에서 type 은 view 는 조회순, date 는 날짜순
 exports.pagenate = async (ctx) => {
+    // 페이지네이션을 위해서는 db 데이터의 개수를 알아야 함
 
+    const { id, type } = ctx.params;
+    const rowNum = await newsale.rowNum();
+    
+    if(type === 'view'){
+
+    }else if(type === 'date'){
+
+    }else{
+        ctx.body = '잘못된 type 요청입니다. type 을 확인하세요'
+    }
 }
 
 exports.detail = async (ctx) => {
+    const { id } = ctx.params;
 
+    // Promise 함수인데 await 안붙히면 Promise 리턴해서 무조건 true 값이 됨. VSS
+    //isExist 는 값이 DB 에 있으면 1, 없으면 0 출력
+    if(await newsale.isExist(id)){
+        // 결과 값을 받았으면 담아야지
+        const result = await newsale.show(id)
+        ctx.body = {
+            status : 200,
+            result
+       }        
+    }else{
+        ctx.throw(400)
+    }
+    // try{
+    //     newsale.show(id)
+    // }catch (e){
+    //     return ctx.throw(500, e)
+    // }
 }
 
 exports.search = async (ctx) => {

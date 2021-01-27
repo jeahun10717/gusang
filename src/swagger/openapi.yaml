@@ -146,6 +146,16 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200'
+  
+  /newsale/remove/:id:
+    delete:
+      security:
+        - BearerAuth: []
+      tags:
+        - NewSale
+      requestBody:
+        
+
       
 
 # === components =========================================================

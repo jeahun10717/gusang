@@ -34,6 +34,12 @@ exports.pageByView = async(page, contents) =>{
 //     return result; // 있으면 객체, 없으면 undefined
 // }
 
+//isExist 는 값이 DB 에 있으면 1, 없으면 0 출력
 exports.isExist = async(id)=>{
-    return await db.query('select * from (newSale where id = ?) as success', id);
+    const [result] = await db.query('select count(*) cnt from newSale where id = ?', id);
+    return result.cnt;
+}
+
+exports.rowNum = async()=>{
+    return await db.query('select count(*) cnt from newSale');
 }
