@@ -4,17 +4,30 @@ const { newsale } = require('../../databases');
 
 // 아래 함수에서 type 은 view 는 조회순, date 는 날짜순
 exports.pagenate = async (ctx) => {
-    // 페이지네이션을 위해서는 db 데이터의 개수를 알아야 함
-
-    const { id, type } = ctx.params;
-    const rowNum = await newsale.rowNum();
+    // show/:type/:id 
+    // 위의 api router 에서 type 은 최신순, 조회순
+    const { type, pagenum } = ctx.params;
     
+    // 페이지네이션을 위해서는 db 데이터의 개수를 알아야 함
+    const rowNum = await newsale.rowNum();
+   
+    console.log(rowNum);
+    // NaN 오류 발생 함. id 에
     if(type === 'view'){
-
+        const result = await newsale.pageByView( pagenum, 2);
+        ctx.body = {
+            status : 200,
+            result
+        }
     }else if(type === 'date'){
-
+        const result = await newsale.pageByNew( pagenum, 2);
+        ctx.body = {
+            status : 200,
+            result
+        }
     }else{
-        ctx.body = '잘못된 type 요청입니다. type 을 확인하세요'
+        ctx.body = '잘못된 type 요청입니다. type 을 확인하세요';
+        ctx.throw(400);
     }
 }
 
@@ -40,7 +53,12 @@ exports.detail = async (ctx) => {
     // }
 }
 
+// /search/:type/:input api 라우트에 쓸 함수
+// type 은 검색할 db의 column 의 종류, input 은 검색어 종류
 exports.search = async (ctx) => {
+    const { type, input } = ctx.params;
+    console.log(input, ' : ', typeof input);
+
 
 }
 

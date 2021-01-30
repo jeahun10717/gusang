@@ -22,18 +22,11 @@ exports.pageByNew = async(page, contents) =>{
     return await db.query(`select * from newSale order by id desc limit ? offset ?`
     ,[contents, page * contents]);
 }
-// 조회수순으로 정렬
+// 조회수순으로 정렬 
 exports.pageByView = async(page, contents) =>{
     return await db.query(`select * from newSale order by views desc limit ? offset ?`
     ,[contents, page * contents]);
 }
-
-// exports.isExist = async (login_type, login_id) => {
-//     const [result] = await db.query("select hex(uuid) uuid, isnull(name) isNew from users where login_type = ? and login_id = ?"
-//     ,[login_type, login_id]);
-//     return result; // 있으면 객체, 없으면 undefined
-// }
-
 //isExist 는 값이 DB 에 있으면 1, 없으면 0 출력
 exports.isExist = async(id)=>{
     const [result] = await db.query('select count(*) cnt from newSale where id = ?', id);
@@ -42,4 +35,8 @@ exports.isExist = async(id)=>{
 
 exports.rowNum = async()=>{
     return await db.query('select count(*) cnt from newSale');
+}
+
+exports.search = async()=>{
+    return await db.query(`select * from newSale where contents_name like '%?%' || '%?%'`);
 }
