@@ -9,9 +9,9 @@ exports.pagenate = async (ctx) => {
     const { type, pagenum } = ctx.params;
     
     // 페이지네이션을 위해서는 db 데이터의 개수를 알아야 함
-    const rowNum = await newsale.rowNum();
+    // const rowNum = await newsale.rowNum();
    
-    console.log(rowNum);
+    // console.log(rowNum);
     // NaN 오류 발생 함. id 에
     if(type === 'view'){
         const result = await newsale.pageByView( pagenum, 2);
@@ -46,20 +46,15 @@ exports.detail = async (ctx) => {
     }else{
         ctx.throw(400)
     }
-    // try{
-    //     newsale.show(id)
-    // }catch (e){
-    //     return ctx.throw(500, e)
-    // }
 }
 
 // /search/:type/:input api 라우트에 쓸 함수
 // type 은 검색할 db의 column 의 종류, input 은 검색어 종류
 exports.search = async (ctx) => {
-    const { type, input } = ctx.params;
+    const { input } = ctx.params;
     console.log(input, ' : ', typeof input);
 
-
+    
 }
 
 exports.create = async (ctx) => {
