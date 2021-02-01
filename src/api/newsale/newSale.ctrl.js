@@ -25,8 +25,7 @@ exports.pagenate = async (ctx) => {
             status : 200,
             result
         }
-    }else{
-        ctx.body = '잘못된 type 요청입니다. type 을 확인하세요';
+    }else {
         ctx.throw(400);
     }
 }
@@ -52,9 +51,20 @@ exports.detail = async (ctx) => {
 // type 은 검색할 db의 column 의 종류, input 은 검색어 종류
 exports.search = async (ctx) => {
     const { input } = ctx.params;
-    console.log(input, ' : ', typeof input);
 
-    
+    searchName = input.split(' ');
+    console.log(searchName);
+    const result = await newsale.search(searchName[0],searchName[1],searchName[2]);
+
+    console.log(result);
+    ctx.body = {
+        status : 200,
+        result
+    }
+    // ctx.body = input
+    // console.log(ctx.body);
+    // console.log(ctx.request.query);
+    // console.log(ctx.query , ' : 쿼리 확인용');
 }
 
 exports.create = async (ctx) => {
@@ -131,8 +141,4 @@ exports.update = async (ctx) => {
     }else{
         ctx.throw(400)
     }
-}
-
-exports.show = async (ctx) => {
-
 }

@@ -37,6 +37,17 @@ exports.rowNum = async()=>{
     return await db.query('select count(*) cnt from newSale');
 }
 
-exports.search = async()=>{
-    return await db.query(`select * from newSale where contents_name like '%?%' || '%?%'`);
+// exports.search = async(name1, name2, name3)=>{
+//     return await db.query(`select * from newSale where contents_name like \'%${name1}%\' || contents_name like \'%${name2}%\' || contents_name like \'%${name3}%\'`
+//     , [name1, name2, name3]);
+// }
+
+exports.search = async(name1, name2, name3)=>{
+
+    indata1=`%${name1}%`;
+    indata2=`%${name2}%`;
+    indata3=`%${name3}%`;
+    return await db.query(`select * from newSale where contents_name like ? || contents_name like ? || contents_name like ?`
+    , [indata1, indata2, indata3]);
 }
+
