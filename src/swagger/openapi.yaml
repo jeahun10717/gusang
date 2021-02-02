@@ -39,7 +39,9 @@ paths:
                 local_address: 
                   type: string
                   description: 지역명에 대한 정보 저장, ex) 연제구, 부산진구 등등
-
+                thumnail_image:
+                  type: string
+                  description: 매물에 대한 대표 이미지 링크
                 preview_video_link:
                   type: string
                   description: 미리보기 영상 로컬링크
@@ -120,6 +122,7 @@ paths:
                 - contents_name
                 - contents_type
                 - local_address
+                - thumnail_image
                 - preview_video_link
                 - youtube_info_link
                 - youtube_inner_link

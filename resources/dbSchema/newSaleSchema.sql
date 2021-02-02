@@ -1,10 +1,10 @@
 create table newSale(
     id int unsigned auto_increment primary key,
-    thumnail_image varchar(256), -- : 대표 이미지
     contents_name varchar(40), -- : 컨텐츠에 표시될 텍스트, 검색될 때 사용
     contents_type varchar(30), -- 영상,360 vr, 주거, 상가
     local_address varchar(10), -- : 지역명에 대한 정보 저장, ex) 연제구, 부산진구 등등
                                -- 프론트에서 데이터 정해줘야 할 듯
+    thumnail_image varchar(256), -- : 대표 이미지
     -- auth ,  -- : 이 부분은 newSale 을 따로 뺐으니까 필요없을 듯함 
     preview_video_link varchar(256), -- 미리보기 영상 로컬링크
     youtube_info_link varchar(256), -- 안내영상 링크(youtube link)
