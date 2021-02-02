@@ -1,5 +1,6 @@
 create table newSale(
     id int unsigned auto_increment primary key,
+    thumnail_image varchar(256), -- : 대표 이미지
     contents_name varchar(40), -- : 컨텐츠에 표시될 텍스트, 검색될 때 사용
     contents_type varchar(30), -- 영상,360 vr, 주거, 상가
     local_address varchar(10), -- : 지역명에 대한 정보 저장, ex) 연제구, 부산진구 등등

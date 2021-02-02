@@ -13,13 +13,14 @@ add.post ('/',(ctx,next) => {   //부동산 관련 가입 시 로그인 외 추�
         realty_owner_name: Joi.string().required(),
         realty_owner_phone: Joi.string().regex(/^[0-9]{10,11}$/).required()
     }).validate(ctx.request.body);
-    console.log(params);
+
     if(params.error) ctx.throw(400, 'bed request');
+    
+    // console.log(params);
+    // console.log(params.value);
+    // console.log(ctx.request.user);
+    // console.log(UUID);
 
-    console.log(params.value);
-
-    console.log(ctx.request.user);
-    console.log(UUID);
     query=ctx.request.body
     user.update(Buffer.from(UUID, 'hex'), query);
 
