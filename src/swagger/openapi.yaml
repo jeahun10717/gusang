@@ -164,10 +164,7 @@ paths:
           required: true
       responses:
         '200':
-            $ref: '#/components/responses/200'
-        
-
-      
+            $ref: '#/components/responses/200'      
 
 # === components =========================================================
 components:

@@ -1,3 +1,4 @@
+const { query } = require('../db');
 const db = require('../db');
 
 exports.insert = async(query)=>{
@@ -9,8 +10,8 @@ exports.show = async(id) => {
     return await db.query('select * from newSale where id = ?', id);
 }
 
-exports.update = async(id)=>{
-    return await db.query('update newSale set ? where id = ?', id);
+exports.update = async(id,query)=>{
+    return await db.query('update newSale set ? where id = ?', [query,id]);
 }
 
 exports.delete = async(id)=>{
@@ -26,6 +27,11 @@ exports.pageByNew = async(page, contents) =>{
 exports.pageByView = async(page, contents) =>{
     return await db.query(`select * from newSale order by views desc limit ? offset ?`
     ,[contents, page * contents]);
+}
+
+exports.pageForSearch = async(query, page, contents) =>{
+    return await db.query(`select * from newSale order by views desc limit ? offset ?`
+    ,[query ,contents, page * contents]);
 }
 //isExist 는 값이 DB 에 있으면 1, 없으면 0 출력
 exports.isExist = async(id)=>{
@@ -47,7 +53,7 @@ exports.search = async(name1, name2, name3)=>{
     indata1=`%${name1}%`;
     indata2=`%${name2}%`;
     indata3=`%${name3}%`;
-    return await db.query(`select * from newSale where contents_name like ? || contents_name like ? || contents_name like ?`
+    return await db.query(`select * from newSale where contents_name like ? || contents_name like ? || contents_name like ? order by views desc`
     , [indata1, indata2, indata3]);
 }
 

@@ -39,7 +39,9 @@ paths:
                 local_address: 
                   type: string
                   description: 지역명에 대한 정보 저장, ex) 연제구, 부산진구 등등
-
+                thumnail_image:
+                  type: string
+                  description: 매물에 대한 대표 이미지 링크
                 preview_video_link:
                   type: string
                   description: 미리보기 영상 로컬링크
@@ -67,6 +69,7 @@ paths:
                   description: >
                     사진 슬라이드에 들어갈 이미지 로컬링크<br/>
                     이미지가 여러개 인데 만약에 동적(사진 개수가 정해지지 않았을 때)일 경우에는 어떻게 해야 함?<br/>
+                    위의 질문이 구현이 어렵다면 그냥 특정 개수로 태그를 달아서 하는 게 낫나?
             
                 info_image: 
                   type: string
@@ -119,6 +122,7 @@ paths:
                 - contents_name
                 - contents_type
                 - local_address
+                - thumnail_image
                 - preview_video_link
                 - youtube_info_link
                 - youtube_inner_link
@@ -145,6 +149,24 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200'
+  
+  /newsale/remove/:id:
+    delete:
+      security:
+        - BearerAuth: []
+      tags:
+        - NewSale
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+            $ref: '#/components/responses/200'
+        
+
       
 
 # === components =========================================================
