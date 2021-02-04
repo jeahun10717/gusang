@@ -1,3 +1,6 @@
+use gusang;
+select * from interior;
+
 create table interior(
     id int unsigned auto_increment primary key,
     uuid binary(16) unique,
